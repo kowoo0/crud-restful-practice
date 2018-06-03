@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -34,6 +35,13 @@ public class User {
 	@JsonProperty
 	private String name;
 	
+	@Transient
+    private String save;
+    
+    public String getSave() {
+        return save;
+    }
+	
 	public User() {}
 	
 	public User(String id, String pw, String name) {
@@ -52,5 +60,12 @@ public class User {
 	
 	public String getName() {
 		return this.name;
+	}
+	
+	public boolean matchPw(String newPw) {
+      if(newPw == null) {
+         return false;
+       }  
+      return newPw.equals(pw);
 	}
 }

@@ -30,7 +30,7 @@ export default {
       })
       .then(response => {
         if (response.data.success) {
-          console.dir(this.$router)
+          this.$router.push({ name: 'Main' })
         }
       })
       .catch(error => {
